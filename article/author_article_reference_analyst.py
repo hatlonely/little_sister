@@ -16,6 +16,9 @@ def accumulate(li):
 
 
 def to_excel(result, output):
+    dirname = os.path.dirname(output)
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
     wwb = xlwt.Workbook()
     wws = wwb.add_sheet("sheet1")
     i = 0
