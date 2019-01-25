@@ -64,14 +64,14 @@ def analysis(input, output):
         years = []
         keys = [i for i in header if isinstance(i, int)]
         year_article_refers = [[] for i in keys]
-        for i in range(28, rws.nrows):
+        for j in range(28, rws.nrows):
             item = {}
-            for j in range(0, rws.ncols):
-                item[header[j]] = rws.cell(i, j).value
+            for i in range(0, rws.ncols):
+                item[header[i]] = rws.cell(j, i).value
             items.append(item)
             years.append(int(item["出版年"]))
-            for j in range(len(keys)):
-                year_article_refers[j].append(int(item[keys[j]]))
+            for i in range(len(keys)):
+                year_article_refers[i].append(int(item[keys[i]]))
         year_article_sum_refers = [[0 for j in years] for i in keys]
         year_article_avg_refers = [[0 for j in years] for i in keys]
         year_article_sum_refers[0] = year_article_refers[0]
