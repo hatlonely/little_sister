@@ -122,7 +122,7 @@ def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="""Example:
-            python3 1.py -i 2008 -o 2008_analyst
+            python3 author_article_reference_analyst.py -i 2008 -o 2008_analyst
         """
     )
     parser.add_argument(
