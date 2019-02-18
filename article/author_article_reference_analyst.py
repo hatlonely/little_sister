@@ -29,7 +29,7 @@ def to_excel(result, output):
         i += 1
 
     i += 1
-    for key in ["年份", "当年发文篇数", "累计发文量", "当年被引次数", "累计被引次数", "篇均被引1", "年均被引", "篇均被引2"]:
+    for key in ["年份", "当年发文篇数", "累计发文量", "当年被引次数", "累计被引次数", "篇均被引1", "年均被引", "篇均被引2", "h指数"]:
         wws.write(i, 0, key)
         for j in range(len(result["年份"])):
             wws.write(i, j+1, result[key][j])
@@ -91,10 +91,17 @@ def analysis(input, output):
         result["当年发文篇数"] = [0 for i in keys]
         result["篇均被引1"] = [0 for i in keys]
         result["年均被引"] = [0 for i in keys]
+        result["h指数"] = [0 for i in keys]
         for i in range(len(keys)):
             result["当年被引次数"][i] = sum(year_article_refers[i])
             result["年均被引"][i] = sum(year_article_avg_refers[i])
             result["当年发文篇数"][i] = len([y for y in years if y == keys[i]])
+            refers = sorted(year_article_sum_refers[i], reverse=True)
+            for idx in range(len(refers)):
+                if refers[idx] >= idx + 1:
+                    result["h指数"][i] = idx + 1
+                else:
+                    break
         result["累计被引次数"] = accumulate(result["当年被引次数"])
         result["累计发文量"] = accumulate(result["当年发文篇数"])
         result["篇均被引1"] = [
