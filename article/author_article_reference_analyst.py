@@ -105,12 +105,12 @@ def analysis(input, output):
         result["累计被引次数"] = accumulate(result["当年被引次数"])
         result["累计发文量"] = accumulate(result["当年发文篇数"])
         result["篇均被引1"] = [
-            0 if result["当年被引次数"][i] == 0 else result["当年被引次数"][i] /
+            0 if result["累计发文量"][i] == 0 else result["当年被引次数"][i] /
             result["累计发文量"][i]
             for i in range(len(keys))
         ]
         result["篇均被引2"] = [
-            0 if result["年均被引"][i] == 0 else result["年均被引"][i] /
+            0 if result["累计发文量"][i] == 0 else result["年均被引"][i] /
             result["累计发文量"][i]
             for i in range(len(keys))
         ]
